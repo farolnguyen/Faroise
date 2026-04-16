@@ -87,9 +87,6 @@ jobs:
             # Login to GHCR
             echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
 
-            # Set image tag for this deployment
-            export GITHUB_REPO=${{ github.repository_owner }}
-
             # Pull latest image
             docker compose pull app
 

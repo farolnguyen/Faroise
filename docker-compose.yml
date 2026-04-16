@@ -1,7 +1,7 @@
 services:
 
   app:
-    image: ghcr.io/${GITHUB_REPO}/faroise:latest
+    image: ghcr.io/farolnguyen/faroise:latest
     restart: unless-stopped
     volumes:
       - storage_data:/var/www/storage/app
