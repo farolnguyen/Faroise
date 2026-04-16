@@ -1,0 +1,17 @@
+.git
+.github
+node_modules
+npm-debug.log
+.env
+.env.*
+!.env.example
+storage/*.key
+public/hot
+public/build
+vendor
+*.md
+docker-compose*.yml
+Dockerfile
+.dockerignore
+tests/
+phpunit.xml
