@@ -90,8 +90,12 @@ jobs:
             # Pull latest image
             docker compose pull app
 
+            # Remove public_data volume so fresh assets are copied from new image
+            docker compose down --remove-orphans
+            docker volume rm faroise_public_data || true
+
             # Bring up services (MySQL first via healthcheck, then app + nginx)
-            docker compose up -d --remove-orphans
+            docker compose up -d
 
             # Wait for app to be ready then run migrations
             sleep 5
