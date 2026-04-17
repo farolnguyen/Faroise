@@ -17,7 +17,7 @@
     <div class="flex flex-wrap gap-3 justify-center items-start relative z-10 w-full max-w-4xl px-2">
         <template x-for="(slot, i) in slots" :key="'slot-'+i">
             <div
-                class="relative rounded-2xl border-2 transition-all duration-200 overflow-hidden flex-shrink-0 w-[250px] h-[270px]"
+                class="relative rounded-2xl border-2 transition-all duration-200 overflow-hidden flex-shrink-0 w-[300px] h-[330px]"
                 :class="draggingOver === i && !slot ? 'scale-105' : ''"
                 :style="slot
                     ? `border-style:solid; border-color:${slot.color}80; background:${slot.color}1a; box-shadow:0 0 32px ${slot.color}28`
