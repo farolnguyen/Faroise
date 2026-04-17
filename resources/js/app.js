@@ -19,7 +19,7 @@ window._howls  = {};
 
 window.toastManager = toastManager;
 
-window.soundPlayer = function () {
+window.soundPlayer = function (mixData = null) {
     return {
         // ─── State (each factory call returns fresh objects/arrays) ─
         ...audioState(),
@@ -30,6 +30,8 @@ window.soundPlayer = function () {
         ...alarmState(),
         ...sleepState(),
         ...mixSaveState(),
+        // Store mix data passed from server
+        _serverMixData: mixData,
 
         // ─── Methods ───────────────────────────────────────────────
         ...audioMethods,
@@ -49,14 +51,33 @@ window.soundPlayer = function () {
             this._initKeyboard();
             this.$nextTick(() => {
                 this._initLazyChips();
-                const restored = this._parseShareURL();
-                if (!restored && this.slots.filter(s => s !== null).length === 0) {
-                    this._restoreStage();
+                // Load mix from URL parameter first
+                if (this._serverMixData) {
+                    this._loadServerMix(this._serverMixData);
+                } else {
+                    const restored = this._parseShareURL();
+                    if (!restored && this.slots.filter(s => s !== null).length === 0) {
+                        this._restoreStage();
+                    }
                 }
             });
             this.$watch('activeCategory', () => this._resetChipVisibility());
             this.$watch('activeTags',     () => this._resetChipVisibility());
             this.$watch('soundSearch',    () => this._resetChipVisibility());
+        },
+
+        _loadServerMix(mix) {
+            mix.sounds.forEach(s => {
+                this.volumes[s.id] = s.volume;
+                const meta = window.soundMeta?.[s.id] ?? {};
+                this.addToFirstSlot({
+                    id: s.id,
+                    url: s.url,
+                    name: meta.name ?? 'Sound',
+                    icon: meta.icon ?? '🎵',
+                    color: meta.color ?? '#06b6d4'
+                });
+            });
         },
     };
 };

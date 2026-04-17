@@ -2,19 +2,7 @@
     <x-slot name="title">Find Your Sound</x-slot>
 
     <div
-        x-data="soundPlayer()"
-        x-init="
-            @if ($mixData)
-            $nextTick(() => {
-                const mix = @json($mixData);
-                mix.sounds.forEach(s => {
-                    volumes[s.id] = s.volume;
-                    const meta = window.soundMeta?.[s.id] ?? {};
-                    addToFirstSlot({ id: s.id, url: s.url, name: meta.name ?? 'Sound', icon: meta.icon ?? '🎵', color: meta.color ?? '#06b6d4' });
-                });
-            });
-            @endif
-        "
+        x-data="soundPlayer({{ $mixData ? json_encode($mixData) : 'null' }})"
         class="flex flex-col"
         style="min-height: calc(100vh - 64px)"
         @keydown.escape.window="sleepMode && exitSleepMode()"
