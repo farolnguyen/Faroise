@@ -44,27 +44,27 @@
             @endauth
 
             <button @click="copyShareLink()" x-show="activeCount() > 0"
-                class="hidden sm:inline-flex text-sm text-slate-400 hover:text-slate-200 transition-colors px-4 py-2 border border-slate-700 rounded-xl hover:border-slate-500 font-medium">
-                🔗 Share
+                class="text-xs sm:text-sm text-slate-400 hover:text-slate-200 transition-colors px-2.5 sm:px-4 py-1.5 sm:py-2 border border-slate-700 rounded-xl hover:border-slate-500 font-medium">
+                🔗 <span class="hidden sm:inline">Share</span>
             </button>
         </div>
 
         {{-- RIGHT: timer + sleep --}}
-        <div class="hidden sm:flex items-center gap-2 shrink-0">
+        <div class="flex items-center gap-1.5 sm:gap-2 shrink-0">
             <button @click="showTimer = true"
-                class="text-sm transition-colors px-4 py-2 border rounded-xl font-medium"
+                class="text-xs sm:text-sm transition-colors px-2.5 sm:px-4 py-1.5 sm:py-2 border rounded-xl font-medium"
                 :class="timerRunning
                     ? 'text-amber-300 border-amber-600 bg-amber-900/20'
                     : 'text-slate-400 border-slate-700 hover:text-amber-300 hover:border-amber-600'">
                 <span x-show="timerRunning" x-text="'⏱ ' + timerDisplay()"></span>
-                <span x-show="!timerRunning">⏱ Timer</span>
+                <span x-show="!timerRunning">⏱ <span class="hidden sm:inline">Timer</span></span>
             </button>
             <button @click="showSleepPanel = !showSleepPanel"
-                class="text-sm transition-colors px-4 py-2 border rounded-xl font-medium"
+                class="text-xs sm:text-sm transition-colors px-2.5 sm:px-4 py-1.5 sm:py-2 border rounded-xl font-medium"
                 :class="showSleepPanel
                     ? 'text-indigo-300 border-indigo-600 bg-indigo-900/20'
                     : 'text-slate-400 border-slate-700 hover:text-indigo-300 hover:border-indigo-600'">
-                🌑 Sleep
+                🌑 <span class="hidden sm:inline">Sleep</span>
             </button>
         </div>
     </div>
