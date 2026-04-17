@@ -14,10 +14,10 @@
     </p>
 
     {{-- Dynamic Slots (flex-wrap, fixed card size) --}}
-    <div class="grid grid-cols-5 gap-3 relative z-10 w-full max-w-7xl px-2">
+    <div class="flex flex-wrap justify-center gap-3 relative z-10 w-full max-w-5xl px-2">
         <template x-for="(slot, i) in slots" :key="'slot-'+i">
             <div
-                class="relative rounded-2xl border-2 transition-all duration-200 overflow-hidden w-full h-[280px]"
+                class="relative rounded-2xl border-2 transition-all duration-200 overflow-hidden w-full sm:w-[calc(50%-6px)] lg:w-[185px] h-[200px] sm:h-[240px] lg:h-[280px]"
                 :class="draggingOver === i && !slot ? 'scale-105' : ''"
                 :style="slot
                     ? `border-style:solid; border-color:${slot.color}80; background:${slot.color}1a; box-shadow:0 0 32px ${slot.color}28`
@@ -31,7 +31,7 @@
                 {{-- Empty slot --}}
                 <template x-if="!slot">
                     <div class="absolute inset-0 flex flex-col items-center justify-center gap-2">
-                        <div class="text-slate-500 font-light select-none leading-none" style="font-size:6rem">+</div>
+                        <div class="text-slate-500 font-light select-none leading-none text-7xl sm:text-8xl lg:text-[6rem]">+</div>
                         <div class="text-slate-600 text-[10px] uppercase tracking-widest select-none">drop here</div>
                     </div>
                 </template>

@@ -7,12 +7,12 @@
     x-transition:leave="transition ease-in duration-200"
     x-transition:leave-start="translate-y-0 opacity-100"
     x-transition:leave-end="translate-y-full opacity-0"
-    class="fixed bottom-0 left-0 right-0 bg-slate-950/95 backdrop-blur-md border-t border-slate-800 px-5 py-3.5 z-40"
+    class="fixed bottom-0 left-0 right-0 bg-slate-950/95 backdrop-blur-md border-t border-slate-800 px-3 sm:px-5 py-2.5 sm:py-3.5 z-40"
 >
-    <div class="max-w-5xl mx-auto flex items-center justify-between gap-4">
+    <div class="max-w-5xl mx-auto flex items-center justify-between gap-2 sm:gap-4">
 
         {{-- LEFT: playing + save + stop --}}
-        <div class="flex items-center gap-3 min-w-0">
+        <div class="flex items-center gap-2 sm:gap-3 min-w-0">
             {{-- Wave animation --}}
             <div class="flex gap-0.5 items-end shrink-0" style="height:22px">
                 <span class="w-1.5 rounded-full bg-cyan-400 animate-[bounce_0.9s_ease-in-out_infinite]"       style="height:100%"></span>
@@ -20,37 +20,37 @@
                 <span class="w-1.5 rounded-full bg-cyan-400 animate-[bounce_0.9s_ease-in-out_infinite_0.25s]" style="height:80%"></span>
                 <span class="w-1.5 rounded-full bg-cyan-400 animate-[bounce_0.9s_ease-in-out_infinite_0.15s]" style="height:45%"></span>
             </div>
-            <span class="text-base text-slate-200 font-medium shrink-0">
+            <span class="text-sm sm:text-base text-slate-200 font-medium shrink-0">
                 <span x-text="activeCount()"></span>
-                <span x-text="activeCount() === 1 ? ' sound' : ' sounds'"></span>
-                <span class="text-slate-500 font-normal"> playing</span>
+                <span class="hidden sm:inline" x-text="activeCount() === 1 ? ' sound' : ' sounds'"></span>
+                <span class="text-slate-500 font-normal hidden sm:inline"> playing</span>
             </span>
 
-            <div class="w-px h-6 bg-slate-700 shrink-0 mx-1"></div>
+            <div class="w-px h-5 bg-slate-700 shrink-0"></div>
             <button @click="stopAll()"
-                class="text-sm text-red-400 hover:text-red-300 transition-colors px-4 py-2 border border-red-900/60 rounded-xl hover:border-red-600 font-medium">
-                ⏹ Stop All
+                class="text-xs sm:text-sm text-red-400 hover:text-red-300 transition-colors px-2.5 sm:px-4 py-1.5 sm:py-2 border border-red-900/60 rounded-xl hover:border-red-600 font-medium">
+                ⏹ <span class="hidden sm:inline">Stop All</span>
             </button>
             @auth
             <button @click="openSaveMix()"
-                class="text-sm text-slate-300 hover:text-cyan-300 transition-colors px-4 py-2 border border-slate-700 rounded-xl hover:border-cyan-700 font-medium">
-                💾 Save
+                class="text-xs sm:text-sm text-slate-300 hover:text-cyan-300 transition-colors px-2.5 sm:px-4 py-1.5 sm:py-2 border border-slate-700 rounded-xl hover:border-cyan-700 font-medium">
+                💾 <span class="hidden sm:inline">Save</span>
             </button>
             @else
             <a href="{{ route('login') }}"
-               class="text-sm text-slate-300 hover:text-cyan-300 transition-colors px-4 py-2 border border-slate-700 rounded-xl hover:border-cyan-700 font-medium">
-                Login to Save
+               class="text-xs sm:text-sm text-slate-300 hover:text-cyan-300 transition-colors px-2.5 sm:px-4 py-1.5 sm:py-2 border border-slate-700 rounded-xl hover:border-cyan-700 font-medium">
+                <span class="sm:hidden">Login</span><span class="hidden sm:inline">Login to Save</span>
             </a>
             @endauth
 
             <button @click="copyShareLink()" x-show="activeCount() > 0"
-                class="text-sm text-slate-400 hover:text-slate-200 transition-colors px-4 py-2 border border-slate-700 rounded-xl hover:border-slate-500 font-medium">
+                class="hidden sm:inline-flex text-sm text-slate-400 hover:text-slate-200 transition-colors px-4 py-2 border border-slate-700 rounded-xl hover:border-slate-500 font-medium">
                 🔗 Share
             </button>
         </div>
 
         {{-- RIGHT: timer + sleep --}}
-        <div class="flex items-center gap-2 shrink-0">
+        <div class="hidden sm:flex items-center gap-2 shrink-0">
             <button @click="showTimer = true"
                 class="text-sm transition-colors px-4 py-2 border rounded-xl font-medium"
                 :class="timerRunning
