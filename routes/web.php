@@ -28,7 +28,7 @@ Route::get('/dashboard', function () {
 
 Route::middleware('guest')->group(function () {
     Route::get('/password/otp', [OtpPasswordController::class, 'showForgotForm'])->name('password.otp.request');
-    Route::post('/password/otp/send', [OtpPasswordController::class, 'sendForgotOtp'])->name('password.otp.send');
+    Route::post('/password/otp/send', [OtpPasswordController::class, 'sendForgotOtp'])->name('password.otp.send')->middleware('throttle:3,1');
     Route::get('/password/otp/verify', [OtpPasswordController::class, 'showForgotVerify'])->name('password.otp.verify');
     Route::post('/password/otp/reset', [OtpPasswordController::class, 'verifyForgotOtp'])->name('password.otp.reset');
 });
@@ -47,7 +47,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    Route::post('/profile/password/otp/send', [OtpPasswordController::class, 'sendProfileOtp'])->name('profile.password.otp.send');
+    Route::post('/profile/password/otp/send', [OtpPasswordController::class, 'sendProfileOtp'])->name('profile.password.otp.send')->middleware('throttle:3,1');
     Route::get('/profile/password/otp/verify', [OtpPasswordController::class, 'showProfileVerify'])->name('profile.password.verify');
     Route::post('/profile/password/otp/reset', [OtpPasswordController::class, 'verifyProfileOtp'])->name('profile.password.otp.reset');
 });
