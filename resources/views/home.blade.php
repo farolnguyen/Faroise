@@ -2,7 +2,7 @@
     <x-slot name="title">Find Your Sound</x-slot>
 
     <div
-        x-data="soundPlayer({{ $mixData ? json_encode($mixData) : 'null' }})"
+        x-data='soundPlayer(@js($mixData))'
         class="flex flex-col"
         style="min-height: calc(100vh - 64px)"
         @keydown.escape.window="sleepMode && exitSleepMode()"
