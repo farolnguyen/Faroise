@@ -17,7 +17,7 @@
     <div class="flex flex-wrap gap-3 justify-center items-start relative z-10 w-full max-w-4xl px-2">
         <template x-for="(slot, i) in slots" :key="'slot-'+i">
             <div
-                class="relative rounded-2xl border-2 transition-all duration-200 overflow-hidden flex-shrink-0 w-[160px] h-[185px]"
+                class="relative rounded-2xl border-2 transition-all duration-200 overflow-hidden flex-shrink-0 w-[180px] h-[205px]"
                 :class="draggingOver === i && !slot ? 'scale-105' : ''"
                 :style="slot
                     ? `border-style:solid; border-color:${slot.color}80; background:${slot.color}1a; box-shadow:0 0 32px ${slot.color}28`
@@ -31,7 +31,7 @@
                 {{-- Empty slot --}}
                 <template x-if="!slot">
                     <div class="absolute inset-0 flex flex-col items-center justify-center gap-2">
-                        <div class="text-slate-500 font-light select-none leading-none" style="font-size:4rem">+</div>
+                        <div class="text-slate-500 font-light select-none leading-none" style="font-size:6rem">+</div>
                         <div class="text-slate-600 text-[10px] uppercase tracking-widest select-none">drop here</div>
                     </div>
                 </template>
