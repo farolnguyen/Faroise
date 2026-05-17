@@ -52,7 +52,7 @@ class Sound extends Model
     public function getAudioUrlAttribute(): string
     {
         return $this->source_type === 'local'
-            ? asset('storage/' . $this->file_path)
-            : $this->external_url;
+            ? asset('storage/' . ($this->file_path ?? ''))
+            : ($this->external_url ?? '');
     }
 }
